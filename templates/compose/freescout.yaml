@@ -7,7 +7,7 @@
 
 services:
   freescout:
-    image: tiredofit/freescout:latest
+    image: nfrastack/freescout:latest
     volumes:
       - freescout-data:/data
       - freescout-logs:/www/logs
