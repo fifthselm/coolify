@@ -1,0 +1,21 @@
+# documentation: https://baserow.io/docs/installation/install-with-docker
+# slogan: "Baserow is an open-source no-code database platform and Airtable alternative."
+# category: database
+# tags: baserow,no-code,database,airtable,spreadsheet,collaboration
+# logo: svgs/baserow.svg
+# port: 80
+
+services:
+  baserow:
+    image: baserow/baserow:2.2.2
+    environment:
+      - SERVICE_URL_BASEROW_80
+      - BASEROW_PUBLIC_URL=${SERVICE_URL_BASEROW}
+    volumes:
+      - baserow-data:/baserow/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:80/_health/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
